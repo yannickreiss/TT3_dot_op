@@ -21,7 +21,7 @@ documentation:
   author:       "Yannick Reiß"      # Your name
   title:        "Switch Diamond Control"      # Project title
   language:     "Verilog" # other examples include Verilog, Amaranth, VHDL, etc
-  description:  ""      # Short description of what your project does
+  description:  "Automated control unit for model train switch diamonds."      # Short description of what your project does
 
 # Longer description of how the project works. You can use standard markdown format.
   how_it_works: |
