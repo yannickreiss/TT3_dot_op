@@ -27,8 +27,8 @@ module yannickreiss_switch_diamond(
   wire set_switch;
 
   // Modes
-  //  keep tracks can be ignored, as switches are straight by deffault
-  wire bind;
+  //  keep tracks can be ignored, as switches are straight by default
+  wire bind_track;
   wire as; // avoid stop
   wire co; // crossover 
 
@@ -47,10 +47,10 @@ module yannickreiss_switch_diamond(
   // signals per mode
   assign co = I[4] & I[5];
   assign as = I[4] & w1;
-  assign bind = I[5] & w2;
+  assign bind_track = I[5] & w2;
 
   // finally set switch
-  assign set_switch = co | as | bind;
+  assign set_switch = co | as | bind_track;
 
   // set output
   assign O[0:3] = {snw, ssw, sne, sse};
