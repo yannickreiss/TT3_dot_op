@@ -1,8 +1,6 @@
-/* Automatically generated from https://wokwi.com/projects/358906390227372033 */
-
 `default_nettype none
 
-module user_module_switch_diamond(
+module yannickreiss_switch_diamond(
   input [7:0] io_in,
   output [7:0] io_out
 );
@@ -55,5 +53,6 @@ module user_module_switch_diamond(
   assign set_switch = co | as | bind;
 
   // set output
-  assign O[3:0] = {set_switch, set_switch, set_switch, set_switch};
+  assign O[0:3] = {snw, ssw, sne, sse};
+  assign O[4:7] = {set_switch, set_switch, set_switch, set_switch};
 endmodule
