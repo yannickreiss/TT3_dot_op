@@ -1,13 +1,13 @@
 `default_nettype none
 
 module yannickreiss_switch_diamond(
-  input [7:0] io_in,
-  output [7:0] io_out
+  input [0:7] io_in,
+  output [0:7] io_out
 );
-  wire [7:0] I;
-  wire [7:0] O;
+  wire [0:7] I;
+  wire [0:7] O;
 
-  assign I = io_in;
+  assign I = io_in[1:6] & "0";
   assign O = io_out;
 
   // signal control
