@@ -4,7 +4,8 @@ module yannickreiss_dot_op(
   input [0:7] io_in,
   output [0:7] io_out
 );
-
+assign io_out = io_in;
+/*
   // Inputs
   wire no_clk;
   wire op_code;
@@ -71,5 +72,5 @@ module yannickreiss_dot_op(
       quotient = 3'b010;
       reminder = {2'b00, op1[2]};
     end
-  end
+  end*/
 endmodule
