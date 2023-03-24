@@ -2,10 +2,8 @@
 
 module yannickreiss_dot_op(
   input [0:7] io_in,
-  output [0:7] io_out
+  output reg [0:7] io_out
 );
-assign io_out = io_in;
-/*
   // Inputs
   wire no_clk;
   wire op_code;
@@ -27,8 +25,6 @@ assign io_out = io_in;
   assign op1 = io_in[2:4];
   assign op2 = io_in[5:7];
 
-  assign io_out[6:7] = 2'b00;
-  
   always @(io_in) begin
     if (op_code) begin
       io_out[0:2] = quotient;
@@ -36,14 +32,14 @@ assign io_out = io_in;
     end else begin
       io_out[0:5] = product;
     end
+     io_out[6:7] = 2'b00;
+     
   end
 
   // Here is the logic
-  always @(io_in) begin
-    product = op1 * op2;
-  end
+  assign  product = op1 * op2;
 
-  always @(io_in) begin
+  always @(*) begin
     
     // check middle axis
     if (op1 == op2) begin
@@ -61,16 +57,16 @@ assign io_out = io_in;
     end else if (op2 > op1) begin
       quotient = 3'b000;
       reminder = op1;
-    end else if (!((op2 == 3'b011) and (op1 > 3'b101))) begin
+    end else if (((op2 == 3'b011) && (op1 > 3'b101))) begin
+       quotient = 3'b010;
+       reminder = {2'b00, op1[2]};
+    end else begin       
       quotient = 3'b001;
       if (op1[2] ^ op2[2]) begin
         reminder = 3'b001;
       end else if (op1[1] ^ op2[1]) begin
         reminder = 3'b010;
       end else reminder = 3'b011;
-    end else begin
-      quotient = 3'b010;
-      reminder = {2'b00, op1[2]};
     end
-  end*/
+  end
 endmodule
