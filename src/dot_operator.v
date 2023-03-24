@@ -60,7 +60,7 @@ module yannickreiss_dot_op(
     end else if (op2 > op1) begin
       quotient = 3'b000;
       reminder = op1;
-    end else if (!((op2 == 3) and (op1 > 5))) begin
+    end else if (!((op2 == 3'b011) and (op1 > 3'b101))) begin
       quotient = 3'b001;
       if (op1[2] ^ op2[2]) begin
         reminder = 3'b001;
