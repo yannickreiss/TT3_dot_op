@@ -6,9 +6,9 @@ project:
 # If using an HDL, set wokwi_id as 0 and uncomment and list your source files here. 
 # Source files must be in ./src and you must list each source file separately
   source_files:        
-    - switch_diamond.v
+    - dot_operator.v
 #    - decoder.v
-  top_module:  "yannickreiss_switch_diamond"      # put the name of your top module here, make it unique by prepending your github username
+  top_module:  "yannickreiss_dot_op"      # put the name of your top module here, make it unique by prepending your github username
 
 # Keep a track of the submission yaml
 yaml_version: 3.0
@@ -19,42 +19,44 @@ yaml_version: 3.0
 # Here is a great example: https://github.com/davidsiaw/tt02-davidsiaw-stackcalc/blob/38c5647f83aad2aec675d566aa3d67b98f0aac81/info.yaml
 documentation: 
   author:       "Yannick Reiß"      # Your name
-  title:        "Switch Diamond Control"      # Project title
+  title:        "Dot operation calculator"      # Project title
   language:     "Verilog" # other examples include Verilog, Amaranth, VHDL, etc
-  description:  "Automated control unit for model train switch diamonds."      # Short description of what your project does
+  description:  "Can calculate the result for 3 bit multiplication and division."      # Short description of what your project does
 
 # Longer description of how the project works. You can use standard markdown format.
   how_it_works: |
-      The switch receives information about the occupancy of the four appending tracks. Depending on which mode is set, the approaching trains are routed.
+      It takes input 1 to determine operator and two 3 bit inputs as operands. The result is put to output 0-5.
+      In multiplication mode it just outputs the number binary encoded.
+      In division mode the output pins 0-2 are the quotient and 3-5 are the reminder.
 
 # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
   how_to_test:  |
-      Take your model train and build a switch diamond. Connect the top 4 inputs to a train detector and the bottom 4 inputs to switches. The upper 4 outputs deliver a drive signal (1), the lower 4 control the 4 switches of the switch diamond.
+      Connect input 1-7 with switches and output 0-6 with leds.
 
 # A description of what the inputs do
   inputs:               
-    - north west occupancy
-    - south west occupancy
-    - north east occupancy
-    - south east occupancy
-    - mode (1)
-    - mode (2)
-    - bind west (1 = south)
-    - bind east (1 = south)
+    - clk_dummy
+    - opcode
+    - operand1_1
+    - operand1_2
+    - operand1_3
+    - operand2_1
+    - operand2_2
+    - operand2_3
 # A description of what the outputs do
   outputs:
-    - nw signal
-    - sw signal
-    - ne signal
-    - se signal
-    - nw switch
-    - sw switch
-    - ne switch
-    - se switch
+    - product/quotient
+    - product/quotient
+    - product/quotient
+    - product/reminder
+    - product/reminder
+    - product/reminder
+    - none
+    - none
 
 # The following fields are optional
-  tag:          ""      # comma separated list of tags: test encryption, experiment, clock, animation, utility, industrial, pwm, fpga, alu, microprocessor, risc, riscv, sensor, signal generator, fft, filter, music, bcd, sound, serial, timer, random number generator, calculator, decoder, counter, puzzle, multiplier, game, oscillator,
-  external_hw:  "A model train track with at least one train, two bidirectional tracks, a switch diamond and 4 input switches."      # Describe any external hardware needed
+  tag:          "calculator,multiplier"      # comma separated list of tags: test encryption, experiment, clock, animation, utility, industrial, pwm, fpga, alu, microprocessor, risc, riscv, sensor, signal generator, fft, filter, music, bcd, sound, serial, timer, random number generator, calculator, decoder, counter, puzzle, multiplier, game, oscillator,
+  external_hw:  "7 switches, 6 leds"      # Describe any external hardware needed
   discord:      "YN1CK#7375"      # Your discord handle, used for communication and automatically assigning tapeout role after a submission
   doc_link:     ""      # URL to longer form documentation, eg the README.md in your repository
   clock_hz:     0       # Clock frequency in Hz (if required)
